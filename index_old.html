@@ -1,0 +1,2321 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>LiftPro — Montacargas Industriales</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;600;700;800;900&family=Inter:wght@400;500;600&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      *,
+      *::before,
+      *::after {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
+
+      :root {
+        --blue: #2b4eff;
+        --blue-dark: #1a35cc;
+        --blue-soft: #eef1ff;
+        --purple: #7c5cbf;
+        --purple-soft: #f3eeff;
+        --navy: #0d0d2b;
+        --navy-mid: #1e1e4a;
+        --light-bg: #f4f6ff;
+        --white: #ffffff;
+        --text-muted: #6b7090;
+        --border: #e2e6f3;
+        --orange-soft: #fff0e6;
+        --orange: #ff6b35;
+        --green-soft: #e6f7f0;
+        --green: #1a9e6a;
+        --radius: 16px;
+        --radius-sm: 10px;
+      }
+
+      html {
+        scroll-behavior: smooth;
+      }
+      body {
+        font-family: "Inter", sans-serif;
+        background: var(--white);
+        color: var(--navy);
+        overflow-x: hidden;
+      }
+
+      /* NAV */
+      nav {
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        z-index: 100;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 0 64px;
+        height: 68px;
+        background: rgba(255, 255, 255, 0.95);
+        backdrop-filter: blur(12px);
+        border-bottom: 1px solid var(--border);
+      }
+      .nav-logo {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        text-decoration: none;
+      }
+      .nav-logo-icon {
+        width: 36px;
+        height: 36px;
+        background: var(--blue);
+        border-radius: 8px;
+        display: grid;
+        place-items: center;
+      }
+      .nav-logo-icon svg {
+        width: 22px;
+        height: 22px;
+      }
+      .nav-logo-text {
+        font-family: "Barlow Condensed", sans-serif;
+        font-weight: 800;
+        font-size: 22px;
+        color: var(--navy);
+        letter-spacing: 0.02em;
+      }
+      .nav-links {
+        display: flex;
+        gap: 36px;
+        list-style: none;
+      }
+      .nav-links a {
+        color: var(--text-muted);
+        text-decoration: none;
+        font-size: 14px;
+        font-weight: 500;
+        transition: color 0.2s;
+      }
+      .nav-links a:hover {
+        color: var(--blue);
+      }
+      .nav-cta {
+        background: var(--blue);
+        color: #fff;
+        border: none;
+        padding: 10px 24px;
+        border-radius: 8px;
+        font-weight: 700;
+        font-size: 14px;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        transition:
+          background 0.2s,
+          transform 0.15s;
+      }
+      .nav-cta:hover {
+        background: var(--blue-dark);
+        transform: translateY(-1px);
+      }
+
+      /* HERO */
+      .hero {
+        min-height: 100vh;
+        padding: 100px 64px 80px;
+        background: linear-gradient(
+          150deg,
+          #ffffff 0%,
+          #eef1ff 55%,
+          #f4eeff 100%
+        );
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 60px;
+        align-items: center;
+        position: relative;
+        overflow: hidden;
+      }
+      .hero::before {
+        content: "";
+        position: absolute;
+        top: -80px;
+        right: 22%;
+        width: 340px;
+        height: 340px;
+        background: var(--blue);
+        opacity: 0.06;
+        border-radius: 50%;
+        pointer-events: none;
+      }
+      .hero::after {
+        content: "";
+        position: absolute;
+        bottom: -60px;
+        right: 8%;
+        width: 220px;
+        height: 220px;
+        background: var(--purple);
+        opacity: 0.07;
+        border-radius: 50%;
+        pointer-events: none;
+      }
+      .hero-badge {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        background: var(--blue-soft);
+        border: 1px solid rgba(43, 78, 255, 0.2);
+        color: var(--blue);
+        padding: 6px 16px;
+        border-radius: 999px;
+        font-size: 13px;
+        font-weight: 600;
+        margin-bottom: 24px;
+        letter-spacing: 0.06em;
+        text-transform: uppercase;
+      }
+      .hero-badge span {
+        width: 7px;
+        height: 7px;
+        background: var(--blue);
+        border-radius: 50%;
+        display: inline-block;
+      }
+      .hero-title {
+        font-family: "Barlow Condensed", sans-serif;
+        font-weight: 900;
+        font-size: clamp(42px, 5vw, 72px);
+        line-height: 0.95;
+        color: var(--navy);
+        text-transform: uppercase;
+        letter-spacing: -0.01em;
+        margin-bottom: 20px;
+      }
+      .hero-title em {
+        color: var(--blue);
+        font-style: normal;
+      }
+      .hero-sub {
+        color: var(--text-muted);
+        font-size: 16px;
+        line-height: 1.65;
+        max-width: 420px;
+        margin-bottom: 36px;
+      }
+      .hero-actions {
+        display: flex;
+        gap: 14px;
+        flex-wrap: wrap;
+        margin-bottom: 52px;
+      }
+      .btn-primary {
+        background: var(--blue);
+        color: #fff;
+        padding: 14px 30px;
+        border-radius: 10px;
+        font-weight: 700;
+        font-size: 15px;
+        cursor: pointer;
+        border: none;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        transition:
+          transform 0.15s,
+          box-shadow 0.15s;
+      }
+      .btn-primary:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 8px 30px rgba(43, 78, 255, 0.3);
+      }
+      .btn-secondary {
+        background: transparent;
+        color: var(--navy);
+        padding: 14px 30px;
+        border-radius: 10px;
+        font-weight: 600;
+        font-size: 15px;
+        cursor: pointer;
+        border: 1.5px solid var(--border);
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        transition:
+          border-color 0.2s,
+          background 0.2s;
+      }
+      .btn-secondary:hover {
+        border-color: var(--blue);
+        background: var(--blue-soft);
+      }
+      .hero-stats {
+        display: flex;
+        gap: 36px;
+      }
+      .stat {
+        display: flex;
+        flex-direction: column;
+        gap: 2px;
+      }
+      .stat-num {
+        font-family: "Barlow Condensed", sans-serif;
+        font-weight: 800;
+        font-size: 34px;
+        color: var(--navy);
+      }
+      .stat-num span {
+        color: var(--blue);
+      }
+      .stat-label {
+        color: var(--text-muted);
+        font-size: 12px;
+        font-weight: 500;
+        text-transform: uppercase;
+        letter-spacing: 0.08em;
+      }
+      .stat-divider {
+        width: 1px;
+        background: var(--border);
+        align-self: stretch;
+      }
+
+      /* Hero visual */
+      .hero-visual {
+        position: relative;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        height: 520px;
+      }
+      .hero-main-card {
+        width: 320px;
+        background: var(--white);
+        border: 1px solid var(--border);
+        border-radius: var(--radius);
+        padding: 28px;
+        box-shadow: 0 20px 60px rgba(43, 78, 255, 0.1);
+        position: relative;
+        z-index: 2;
+      }
+      .forklift-svg {
+        width: 100%;
+        height: 200px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+      .card-model-tag {
+        display: inline-flex;
+        gap: 6px;
+        align-items: center;
+        background: var(--blue-soft);
+        color: var(--blue);
+        padding: 4px 12px;
+        border-radius: 999px;
+        font-size: 12px;
+        font-weight: 700;
+        margin-bottom: 12px;
+      }
+      .card-title {
+        color: var(--navy);
+        font-family: "Barlow Condensed", sans-serif;
+        font-weight: 700;
+        font-size: 22px;
+      }
+      .card-specs {
+        display: flex;
+        gap: 16px;
+        margin-top: 14px;
+      }
+      .spec-item {
+        display: flex;
+        flex-direction: column;
+        gap: 2px;
+      }
+      .spec-val {
+        color: var(--blue);
+        font-family: "Barlow Condensed", sans-serif;
+        font-weight: 700;
+        font-size: 18px;
+      }
+      .spec-key {
+        color: var(--text-muted);
+        font-size: 11px;
+        text-transform: uppercase;
+        letter-spacing: 0.06em;
+      }
+
+      /* Floating cards */
+      .float-card {
+        position: absolute;
+        background: var(--white);
+        border-radius: var(--radius-sm);
+        padding: 14px 18px;
+        box-shadow: 0 8px 32px rgba(43, 78, 255, 0.12);
+        border: 1px solid var(--border);
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        animation: float 4s ease-in-out infinite;
+      }
+      .float-card:nth-child(1) {
+        top: 40px;
+        left: -30px;
+        animation-delay: 0s;
+      }
+      .float-card:nth-child(2) {
+        top: 60px;
+        right: -20px;
+        animation-delay: 1.5s;
+      }
+      .float-card:nth-child(3) {
+        bottom: 80px;
+        left: -40px;
+        animation-delay: 0.8s;
+      }
+      .float-card:nth-child(4) {
+        bottom: 60px;
+        right: -10px;
+        animation-delay: 2.2s;
+      }
+      @keyframes float {
+        0%,
+        100% {
+          transform: translateY(0);
+        }
+        50% {
+          transform: translateY(-10px);
+        }
+      }
+      .fc-icon {
+        width: 38px;
+        height: 38px;
+        border-radius: 8px;
+        display: grid;
+        place-items: center;
+        flex-shrink: 0;
+      }
+      .fc-text p {
+        font-size: 11px;
+        color: var(--text-muted);
+      }
+      .fc-text strong {
+        font-size: 16px;
+        font-weight: 700;
+        color: var(--navy);
+        font-family: "Barlow Condensed", sans-serif;
+      }
+
+      /* CLIENTES */
+      .clients {
+        background: var(--white);
+        padding: 36px 64px;
+        border-top: 1px solid var(--border);
+        border-bottom: 1px solid var(--border);
+        display: flex;
+        align-items: center;
+        gap: 48px;
+        overflow: hidden;
+      }
+      .clients-label {
+        font-size: 12px;
+        font-weight: 600;
+        color: var(--text-muted);
+        text-transform: uppercase;
+        letter-spacing: 0.1em;
+        white-space: nowrap;
+      }
+      .clients-logos {
+        display: flex;
+        gap: 48px;
+        align-items: center;
+      }
+      .client-logo {
+        font-family: "Barlow Condensed", sans-serif;
+        font-weight: 800;
+        font-size: 18px;
+        color: #c5cae0;
+        letter-spacing: 0.04em;
+        text-transform: uppercase;
+        transition: color 0.2s;
+      }
+      .client-logo:hover {
+        color: var(--blue);
+      }
+
+      /* SERVICIOS */
+      .services {
+        background: var(--navy);
+        padding: 90px 64px;
+      }
+      .section-eyebrow {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        color: #7c9fff;
+        font-size: 13px;
+        font-weight: 600;
+        text-transform: uppercase;
+        letter-spacing: 0.1em;
+        margin-bottom: 12px;
+      }
+      .section-eyebrow::before {
+        content: "";
+        width: 24px;
+        height: 2px;
+        background: #7c9fff;
+        border-radius: 2px;
+      }
+      .services-header {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 40px;
+        align-items: end;
+        margin-bottom: 52px;
+      }
+      .section-title-lg {
+        font-family: "Barlow Condensed", sans-serif;
+        font-weight: 900;
+        font-size: clamp(36px, 3.5vw, 56px);
+        line-height: 1.02;
+        color: var(--white);
+        text-transform: uppercase;
+      }
+      .section-title-lg em {
+        color: #7c9fff;
+        font-style: normal;
+      }
+      .services-desc {
+        color: rgba(255, 255, 255, 0.55);
+        font-size: 15px;
+        line-height: 1.7;
+      }
+      .btn-outline-blue {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        border: 1.5px solid #7c9fff;
+        color: #7c9fff;
+        padding: 12px 24px;
+        border-radius: 8px;
+        font-weight: 600;
+        font-size: 14px;
+        cursor: pointer;
+        background: transparent;
+        transition:
+          background 0.2s,
+          color 0.2s;
+        margin-top: 24px;
+      }
+      .btn-outline-blue:hover {
+        background: var(--blue);
+        border-color: var(--blue);
+        color: #fff;
+      }
+      .services-grid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 20px;
+      }
+      .service-card {
+        background: rgba(255, 255, 255, 0.04);
+        border: 1px solid rgba(255, 255, 255, 0.08);
+        border-radius: var(--radius);
+        padding: 28px;
+        transition:
+          border-color 0.25s,
+          transform 0.25s,
+          background 0.25s;
+        cursor: default;
+      }
+      .service-card:hover {
+        border-color: #7c9fff;
+        transform: translateY(-4px);
+        background: rgba(124, 159, 255, 0.08);
+      }
+      .service-icon {
+        width: 52px;
+        height: 52px;
+        border-radius: 12px;
+        display: grid;
+        place-items: center;
+        margin-bottom: 18px;
+      }
+      .service-icon svg {
+        width: 26px;
+        height: 26px;
+      }
+      .service-card h3 {
+        color: var(--white);
+        font-family: "Barlow Condensed", sans-serif;
+        font-weight: 700;
+        font-size: 20px;
+        margin-bottom: 10px;
+      }
+      .service-card p {
+        color: rgba(255, 255, 255, 0.5);
+        font-size: 14px;
+        line-height: 1.65;
+      }
+
+      /* PRODUCTOS */
+      .products {
+        padding: 90px 64px;
+        background: var(--light-bg);
+      }
+      .products-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-end;
+        margin-bottom: 48px;
+      }
+      .eyebrow-blue {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        color: var(--blue);
+        font-size: 13px;
+        font-weight: 600;
+        text-transform: uppercase;
+        letter-spacing: 0.1em;
+        margin-bottom: 12px;
+      }
+      .eyebrow-blue::before {
+        content: "";
+        width: 24px;
+        height: 2px;
+        background: var(--blue);
+        border-radius: 2px;
+      }
+      .section-title-dark {
+        font-family: "Barlow Condensed", sans-serif;
+        font-weight: 900;
+        font-size: clamp(36px, 3.5vw, 52px);
+        line-height: 1.02;
+        color: var(--navy);
+        text-transform: uppercase;
+      }
+      .section-title-dark em {
+        color: var(--purple);
+        font-style: normal;
+      }
+      .products-grid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 24px;
+      }
+      .product-card {
+        background: var(--white);
+        border-radius: var(--radius);
+        overflow: hidden;
+        border: 1px solid var(--border);
+        transition:
+          box-shadow 0.25s,
+          transform 0.25s;
+      }
+      .product-card:hover {
+        box-shadow: 0 20px 60px rgba(43, 78, 255, 0.12);
+        transform: translateY(-5px);
+      }
+      .product-img {
+        background: var(--blue-soft);
+        height: 200px;
+        display: grid;
+        place-items: center;
+        position: relative;
+        overflow: hidden;
+      }
+      .product-img svg {
+        width: 130px;
+        height: auto;
+      }
+      .product-tag {
+        position: absolute;
+        top: 14px;
+        left: 14px;
+        background: var(--blue);
+        color: #fff;
+        font-size: 11px;
+        font-weight: 700;
+        padding: 4px 10px;
+        border-radius: 6px;
+        text-transform: uppercase;
+      }
+      .product-info {
+        padding: 22px;
+      }
+      .product-info h3 {
+        font-family: "Barlow Condensed", sans-serif;
+        font-weight: 700;
+        font-size: 21px;
+        color: var(--navy);
+        margin-bottom: 6px;
+      }
+      .product-info p {
+        font-size: 13px;
+        color: var(--text-muted);
+        line-height: 1.6;
+        margin-bottom: 16px;
+      }
+      .product-specs {
+        display: flex;
+        gap: 16px;
+        margin-bottom: 18px;
+        flex-wrap: wrap;
+      }
+      .p-spec {
+        background: var(--light-bg);
+        padding: 6px 12px;
+        border-radius: 6px;
+      }
+      .p-spec span {
+        display: block;
+        font-size: 10px;
+        color: var(--text-muted);
+        text-transform: uppercase;
+        letter-spacing: 0.06em;
+      }
+      .p-spec strong {
+        font-size: 13px;
+        font-weight: 600;
+        color: var(--navy);
+      }
+      .product-footer {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
+      .product-price {
+        font-family: "Barlow Condensed", sans-serif;
+        font-weight: 800;
+        font-size: 24px;
+        color: var(--navy);
+      }
+      .product-price small {
+        font-size: 13px;
+        font-weight: 500;
+        color: var(--text-muted);
+        font-family: "Inter", sans-serif;
+      }
+      .btn-sm {
+        background: var(--blue);
+        color: #fff;
+        border: none;
+        padding: 10px 20px;
+        border-radius: 8px;
+        font-weight: 600;
+        font-size: 13px;
+        cursor: pointer;
+        transition: background 0.2s;
+      }
+      .btn-sm:hover {
+        background: var(--blue-dark);
+      }
+
+      /* BENEFICIOS */
+      .benefits {
+        padding: 90px 64px;
+        background: var(--white);
+      }
+      .benefits-inner {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 80px;
+        align-items: center;
+      }
+      .benefits-visual {
+        position: relative;
+      }
+      .benefits-big-card {
+        background: var(--navy);
+        border-radius: var(--radius);
+        padding: 36px;
+        position: relative;
+        overflow: hidden;
+      }
+      .benefits-big-card::after {
+        content: "";
+        position: absolute;
+        bottom: -40px;
+        right: -40px;
+        width: 180px;
+        height: 180px;
+        border-radius: 50%;
+        background: rgba(43, 78, 255, 0.15);
+        pointer-events: none;
+      }
+      .big-card-label {
+        color: rgba(255, 255, 255, 0.45);
+        font-size: 12px;
+        text-transform: uppercase;
+        letter-spacing: 0.1em;
+        margin-bottom: 8px;
+      }
+      .big-card-val {
+        font-family: "Barlow Condensed", sans-serif;
+        font-weight: 900;
+        font-size: 64px;
+        color: var(--white);
+        line-height: 1;
+      }
+      .big-card-val span {
+        color: #7c9fff;
+      }
+      .big-card-sub {
+        color: rgba(255, 255, 255, 0.5);
+        font-size: 14px;
+        margin-top: 6px;
+      }
+      .big-card-bar {
+        margin-top: 24px;
+        background: rgba(255, 255, 255, 0.1);
+        border-radius: 4px;
+        height: 6px;
+        overflow: hidden;
+      }
+      .big-card-bar-fill {
+        height: 100%;
+        background: var(--blue);
+        border-radius: 4px;
+        width: 88%;
+      }
+      .benefit-mini-cards {
+        display: flex;
+        gap: 16px;
+        margin-top: 20px;
+      }
+      .bmc {
+        flex: 1;
+        background: var(--blue-soft);
+        border-radius: var(--radius-sm);
+        padding: 18px;
+        border: 1px solid rgba(43, 78, 255, 0.15);
+      }
+      .bmc-val {
+        font-family: "Barlow Condensed", sans-serif;
+        font-weight: 800;
+        font-size: 28px;
+        color: var(--navy);
+      }
+      .bmc-val span {
+        color: var(--blue);
+      }
+      .bmc-label {
+        font-size: 12px;
+        color: var(--text-muted);
+        margin-top: 2px;
+      }
+
+      .eyebrow-purple {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        color: var(--purple);
+        font-size: 13px;
+        font-weight: 600;
+        text-transform: uppercase;
+        letter-spacing: 0.1em;
+        margin-bottom: 12px;
+      }
+      .eyebrow-purple::before {
+        content: "";
+        width: 24px;
+        height: 2px;
+        background: var(--purple);
+        border-radius: 2px;
+      }
+      .benefits-list {
+        margin-top: 32px;
+        display: flex;
+        flex-direction: column;
+        gap: 16px;
+      }
+      .benefit-item {
+        display: flex;
+        gap: 14px;
+        align-items: flex-start;
+      }
+      .benefit-check {
+        width: 24px;
+        height: 24px;
+        border-radius: 50%;
+        background: var(--green-soft);
+        display: grid;
+        place-items: center;
+        flex-shrink: 0;
+        margin-top: 1px;
+      }
+      .benefit-check svg {
+        width: 13px;
+        height: 13px;
+        stroke: var(--green);
+      }
+      .benefit-item p {
+        font-size: 14px;
+        color: var(--text-muted);
+        line-height: 1.65;
+      }
+      .benefit-item strong {
+        color: var(--navy);
+        display: block;
+        font-size: 15px;
+        margin-bottom: 2px;
+      }
+
+      /* CONTACTO */
+      .contact {
+        background: var(--navy);
+        padding: 90px 64px;
+      }
+      .contact-inner {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 80px;
+        align-items: start;
+      }
+      .contact-info .section-title-lg {
+        font-size: clamp(30px, 3vw, 48px);
+      }
+      .contact-info p {
+        color: rgba(255, 255, 255, 0.55);
+        font-size: 15px;
+        line-height: 1.7;
+        margin: 20px 0 36px;
+      }
+      .contact-points {
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+      }
+      .cp {
+        display: flex;
+        gap: 14px;
+        align-items: center;
+        background: rgba(255, 255, 255, 0.05);
+        border-radius: var(--radius-sm);
+        padding: 16px 20px;
+        border: 1px solid rgba(255, 255, 255, 0.08);
+      }
+      .cp-icon {
+        width: 40px;
+        height: 40px;
+        background: rgba(43, 78, 255, 0.25);
+        border-radius: 8px;
+        display: grid;
+        place-items: center;
+        flex-shrink: 0;
+      }
+      .cp-icon svg {
+        width: 18px;
+        height: 18px;
+        stroke: #7c9fff;
+        fill: none;
+      }
+      .cp-text span {
+        display: block;
+        font-size: 11px;
+        color: rgba(255, 255, 255, 0.35);
+        text-transform: uppercase;
+        letter-spacing: 0.08em;
+      }
+      .cp-text strong {
+        color: var(--white);
+        font-size: 15px;
+        font-weight: 600;
+      }
+
+      .contact-form {
+        background: rgba(255, 255, 255, 0.04);
+        border: 1px solid rgba(255, 255, 255, 0.09);
+        border-radius: var(--radius);
+        padding: 36px;
+      }
+      .contact-form h3 {
+        color: var(--white);
+        font-family: "Barlow Condensed", sans-serif;
+        font-weight: 700;
+        font-size: 24px;
+        margin-bottom: 24px;
+      }
+      .form-row {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 16px;
+      }
+      .form-group {
+        display: flex;
+        flex-direction: column;
+        gap: 6px;
+        margin-bottom: 16px;
+      }
+      .form-group label {
+        color: rgba(255, 255, 255, 0.55);
+        font-size: 12px;
+        font-weight: 500;
+        text-transform: uppercase;
+        letter-spacing: 0.06em;
+      }
+      .form-group input,
+      .form-group select,
+      .form-group textarea {
+        background: rgba(255, 255, 255, 0.06);
+        border: 1px solid rgba(255, 255, 255, 0.12);
+        border-radius: 8px;
+        padding: 12px 16px;
+        color: var(--white);
+        font-size: 14px;
+        font-family: "Inter", sans-serif;
+        outline: none;
+        transition: border-color 0.2s;
+      }
+      .form-group input::placeholder,
+      .form-group textarea::placeholder {
+        color: rgba(255, 255, 255, 0.25);
+      }
+      .form-group input:focus,
+      .form-group select:focus,
+      .form-group textarea:focus {
+        border-color: #7c9fff;
+      }
+      .form-group select option {
+        background: var(--navy-mid);
+        color: var(--white);
+      }
+      .form-group textarea {
+        resize: vertical;
+        min-height: 100px;
+      }
+      .btn-form {
+        width: 100%;
+        background: var(--blue);
+        color: #fff;
+        border: none;
+        padding: 14px;
+        border-radius: 10px;
+        font-weight: 700;
+        font-size: 15px;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 10px;
+        transition:
+          background 0.2s,
+          transform 0.15s;
+      }
+      .btn-form:hover {
+        background: var(--blue-dark);
+        transform: translateY(-1px);
+      }
+
+      /* FOOTER */
+      footer {
+        background: #07071a;
+        padding: 48px 64px 32px;
+        display: grid;
+        grid-template-columns: 2fr 1fr 1fr 1fr;
+        gap: 48px;
+      }
+      .footer-brand p {
+        color: rgba(255, 255, 255, 0.4);
+        font-size: 13px;
+        line-height: 1.7;
+        margin-top: 12px;
+        max-width: 240px;
+      }
+      .footer-col h4 {
+        color: var(--white);
+        font-family: "Barlow Condensed", sans-serif;
+        font-weight: 700;
+        font-size: 16px;
+        margin-bottom: 16px;
+        text-transform: uppercase;
+        letter-spacing: 0.06em;
+      }
+      .footer-col ul {
+        list-style: none;
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+      }
+      .footer-col a {
+        color: rgba(255, 255, 255, 0.4);
+        text-decoration: none;
+        font-size: 13px;
+        transition: color 0.2s;
+      }
+      .footer-col a:hover {
+        color: #7c9fff;
+      }
+      .footer-bottom {
+        border-top: 1px solid rgba(255, 255, 255, 0.07);
+        margin-top: 40px;
+        padding-top: 24px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
+      .footer-bottom p {
+        color: rgba(255, 255, 255, 0.3);
+        font-size: 12px;
+      }
+
+      /* Responsive */
+      @media (max-width: 900px) {
+        nav {
+          padding: 0 24px;
+        }
+        .nav-links {
+          display: none;
+        }
+        .hero {
+          grid-template-columns: 1fr;
+          padding: 100px 24px 60px;
+        }
+        .hero-visual {
+          height: 360px;
+        }
+        .float-card:nth-child(2),
+        .float-card:nth-child(4) {
+          display: none;
+        }
+        .clients {
+          padding: 28px 24px;
+          flex-direction: column;
+          align-items: flex-start;
+          gap: 20px;
+        }
+        .services-grid,
+        .products-grid {
+          grid-template-columns: 1fr 1fr;
+        }
+        .services,
+        .products,
+        .benefits,
+        .contact {
+          padding: 64px 24px;
+        }
+        .services-header,
+        .benefits-inner,
+        .contact-inner {
+          grid-template-columns: 1fr;
+          gap: 32px;
+        }
+        .products-header {
+          flex-direction: column;
+          gap: 16px;
+          align-items: flex-start;
+        }
+        footer {
+          grid-template-columns: 1fr 1fr;
+          padding: 48px 24px 24px;
+        }
+        .form-row {
+          grid-template-columns: 1fr;
+        }
+      }
+      @media (max-width: 600px) {
+        .services-grid,
+        .products-grid {
+          grid-template-columns: 1fr;
+        }
+        .hero-stats {
+          flex-direction: column;
+          gap: 20px;
+        }
+        .stat-divider {
+          display: none;
+        }
+        footer {
+          grid-template-columns: 1fr;
+        }
+        .benefit-mini-cards {
+          flex-direction: column;
+        }
+      }
+      @media (prefers-reduced-motion: reduce) {
+        *,
+        *::before,
+        *::after {
+          animation: none !important;
+          transition: none !important;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <!-- NAV -->
+    <nav>
+      <a class="nav-logo" href="#">
+        <div class="nav-logo-icon">
+          <svg
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="#fff"
+            stroke-width="2.5"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          >
+            <rect x="2" y="14" width="8" height="6" rx="1" />
+            <path d="M2 17h18" />
+            <path d="M10 17V8l8 3v6" />
+            <circle cx="6" cy="20" r="2" />
+            <circle cx="18" cy="20" r="2" />
+          </svg>
+        </div>
+        <span class="nav-logo-text">LIFTPRO</span>
+      </a>
+      <ul class="nav-links">
+        <li><a href="#servicios">Servicios</a></li>
+        <li><a href="#productos">Productos</a></li>
+        <li><a href="#beneficios">Beneficios</a></li>
+        <li><a href="#contacto">Contacto</a></li>
+      </ul>
+      <button class="nav-cta">
+        <svg
+          width="16"
+          height="16"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="2.5"
+        >
+          <path
+            d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12 19.79 19.79 0 0 1 1.56 3.44 2 2 0 0 1 3.54 1.25h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 8.76a16 16 0 0 0 6 6l1.88-1.88a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"
+          />
+        </svg>
+        Cotizar Ahora
+      </button>
+    </nav>
+
+    <!-- HERO -->
+    <section class="hero">
+      <div class="hero-content">
+        <div class="hero-badge">
+          <span></span> Líderes en maquinaria industrial
+        </div>
+        <h1 class="hero-title">
+          Potencia que<br /><em>mueve</em><br />tu negocio.
+        </h1>
+        <p class="hero-sub">
+          Montacargas eléctricos, de combustión y reach trucks para todo tipo de
+          operación logística. Venta, renta y mantenimiento.
+        </p>
+        <div class="hero-actions">
+          <button class="btn-primary">
+            <svg
+              width="16"
+              height="16"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2.5"
+            >
+              <circle cx="9" cy="21" r="1" />
+              <circle cx="20" cy="21" r="1" />
+              <path
+                d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"
+              />
+            </svg>
+            Ver Catálogo
+          </button>
+          <button class="btn-secondary">
+            <svg
+              width="16"
+              height="16"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2.5"
+            >
+              <polygon points="5 3 19 12 5 21 5 3" />
+            </svg>
+            Ver Demo
+          </button>
+        </div>
+        <div class="hero-stats">
+          <div class="stat">
+            <span class="stat-num">18<span>+</span></span
+            ><span class="stat-label">Años de experiencia</span>
+          </div>
+          <div class="stat-divider"></div>
+          <div class="stat">
+            <span class="stat-num">3<span>K+</span></span
+            ><span class="stat-label">Equipos vendidos</span>
+          </div>
+          <div class="stat-divider"></div>
+          <div class="stat">
+            <span class="stat-num">98<span>%</span></span
+            ><span class="stat-label">Clientes satisfechos</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="hero-visual">
+        <div class="float-card">
+          <div class="fc-icon" style="background: #eef1ff">
+            <svg
+              width="18"
+              height="18"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="#2B4EFF"
+              stroke-width="2.5"
+            >
+              <path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z" />
+            </svg>
+          </div>
+          <div class="fc-text">
+            <p>Capacidad máxima</p>
+            <strong>10 TON</strong>
+          </div>
+        </div>
+        <div class="float-card">
+          <div class="fc-icon" style="background: #e6f7f0">
+            <svg
+              width="18"
+              height="18"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="#1A9E6A"
+              stroke-width="2.5"
+            >
+              <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14" />
+              <polyline points="22 4 12 14.01 9 11.01" />
+            </svg>
+          </div>
+          <div class="fc-text">
+            <p>Garantía incluida</p>
+            <strong>3 AÑOS</strong>
+          </div>
+        </div>
+        <div class="float-card">
+          <div class="fc-icon" style="background: #f3eeff">
+            <svg
+              width="18"
+              height="18"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="#7C5CBF"
+              stroke-width="2.5"
+            >
+              <circle cx="12" cy="12" r="10" />
+              <polyline points="12 6 12 12 16 14" />
+            </svg>
+          </div>
+          <div class="fc-text">
+            <p>Soporte técnico</p>
+            <strong>24/7</strong>
+          </div>
+        </div>
+        <div class="float-card">
+          <div class="fc-icon" style="background: #fff0e6">
+            <svg
+              width="18"
+              height="18"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="#FF6B35"
+              stroke-width="2.5"
+            >
+              <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
+            </svg>
+          </div>
+          <div class="fc-text">
+            <p>Entregas activas</p>
+            <strong>500+</strong>
+          </div>
+        </div>
+
+        <!-- Main card -->
+        <div class="hero-main-card">
+          <div class="card-model-tag">✦ Modelo Estrella</div>
+          <div class="forklift-svg">
+            <svg viewBox="0 0 200 160" xmlns="http://www.w3.org/2000/svg">
+              <rect
+                x="60"
+                y="60"
+                width="90"
+                height="70"
+                rx="8"
+                fill="#2B4EFF"
+                opacity="0.15"
+              />
+              <rect
+                x="60"
+                y="60"
+                width="90"
+                height="70"
+                rx="8"
+                fill="#2B4EFF"
+                opacity="0.1"
+              />
+              <rect
+                x="105"
+                y="40"
+                width="45"
+                height="45"
+                rx="6"
+                fill="#2B4EFF"
+                opacity="0.2"
+              />
+              <rect
+                x="110"
+                y="45"
+                width="35"
+                height="28"
+                rx="4"
+                fill="#7C9FFF"
+                opacity="0.5"
+              />
+              <rect
+                x="50"
+                y="20"
+                width="8"
+                height="110"
+                rx="3"
+                fill="#2B4EFF"
+              />
+              <rect
+                x="62"
+                y="20"
+                width="8"
+                height="110"
+                rx="3"
+                fill="#1A35CC"
+              />
+              <rect
+                x="20"
+                y="118"
+                width="42"
+                height="6"
+                rx="2"
+                fill="#2B4EFF"
+              />
+              <rect
+                x="20"
+                y="128"
+                width="42"
+                height="6"
+                rx="2"
+                fill="#2B4EFF"
+              />
+              <rect
+                x="48"
+                y="110"
+                width="22"
+                height="28"
+                rx="3"
+                fill="#2B4EFF"
+                opacity="0.3"
+              />
+              <rect
+                x="148"
+                y="90"
+                width="18"
+                height="40"
+                rx="6"
+                fill="#0D0D2B"
+                opacity="0.3"
+              />
+              <circle cx="85" cy="132" r="14" fill="#0D0D2B" opacity="0.7" />
+              <circle cx="85" cy="132" r="8" fill="#2B4EFF" opacity="0.5" />
+              <circle cx="85" cy="132" r="3" fill="#2B4EFF" />
+              <circle cx="135" cy="132" r="14" fill="#0D0D2B" opacity="0.7" />
+              <circle cx="135" cy="132" r="8" fill="#2B4EFF" opacity="0.5" />
+              <circle cx="135" cy="132" r="3" fill="#2B4EFF" />
+              <ellipse
+                cx="110"
+                cy="150"
+                rx="70"
+                ry="8"
+                fill="rgba(43,78,255,0.08)"
+              />
+            </svg>
+          </div>
+          <div class="card-title">LP-5000 Electric</div>
+          <div class="card-specs">
+            <div class="spec-item">
+              <span class="spec-val">5T</span
+              ><span class="spec-key">Cap. carga</span>
+            </div>
+            <div class="spec-item">
+              <span class="spec-val">6m</span
+              ><span class="spec-key">Elevación</span>
+            </div>
+            <div class="spec-item">
+              <span class="spec-val">8h</span
+              ><span class="spec-key">Autonomía</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CLIENTES -->
+    <section class="clients">
+      <span class="clients-label">Confían en nosotros</span>
+      <div class="clients-logos">
+        <span class="client-logo">BODEGA+</span>
+        <span class="client-logo">MEXLOG</span>
+        <span class="client-logo">GRUPOALFA</span>
+        <span class="client-logo">FERCARGO</span>
+        <span class="client-logo">DISTRIBEX</span>
+      </div>
+    </section>
+
+    <!-- SERVICIOS -->
+    <section class="services" id="servicios">
+      <div class="services-header">
+        <div>
+          <div class="section-eyebrow">Nuestros Servicios</div>
+          <h2 class="section-title-lg">
+            Todo lo que<br /><em>necesitas</em><br />en un solo lugar.
+          </h2>
+        </div>
+        <div>
+          <p class="services-desc">
+            Desde la adquisición del equipo hasta su mantenimiento preventivo y
+            correctivo, cubrimos cada etapa de la vida útil de tu montacargas
+            para que tu operación nunca se detenga.
+          </p>
+          <button class="btn-outline-blue">Ver todos los servicios →</button>
+        </div>
+      </div>
+      <div class="services-grid">
+        <div class="service-card">
+          <div class="service-icon" style="background: rgba(43, 78, 255, 0.15)">
+            <svg
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="#7C9FFF"
+              stroke-width="2"
+              stroke-linecap="round"
+            >
+              <circle cx="9" cy="21" r="1" />
+              <circle cx="20" cy="21" r="1" />
+              <path
+                d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"
+              />
+            </svg>
+          </div>
+          <h3>Venta de Equipos</h3>
+          <p>
+            Amplio catálogo de montacargas nuevos y seminuevos, eléctricos y de
+            combustión, para todo tipo de operación.
+          </p>
+        </div>
+        <div class="service-card">
+          <div
+            class="service-icon"
+            style="background: rgba(124, 92, 191, 0.15)"
+          >
+            <svg
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="#BBA3E8"
+              stroke-width="2"
+              stroke-linecap="round"
+            >
+              <rect x="1" y="3" width="15" height="13" />
+              <polygon points="16 8 20 8 23 11 23 16 16 16 16 8" />
+              <circle cx="5.5" cy="18.5" r="2.5" />
+              <circle cx="18.5" cy="18.5" r="2.5" />
+            </svg>
+          </div>
+          <h3>Renta de Montacargas</h3>
+          <p>
+            Planes de renta a corto y largo plazo con mantenimiento incluido.
+            Solución flexible para demanda variable.
+          </p>
+        </div>
+        <div class="service-card">
+          <div
+            class="service-icon"
+            style="background: rgba(26, 158, 106, 0.15)"
+          >
+            <svg
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="#4DC99A"
+              stroke-width="2"
+              stroke-linecap="round"
+            >
+              <path
+                d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"
+              />
+            </svg>
+          </div>
+          <h3>Mantenimiento Preventivo</h3>
+          <p>
+            Programas periódicos de revisión y ajuste para maximizar la vida
+            útil de tu equipo y evitar paros inesperados.
+          </p>
+        </div>
+        <div class="service-card">
+          <div
+            class="service-icon"
+            style="background: rgba(255, 107, 53, 0.15)"
+          >
+            <svg
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="#FF9970"
+              stroke-width="2"
+              stroke-linecap="round"
+            >
+              <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
+            </svg>
+          </div>
+          <h3>Garantía Extendida</h3>
+          <p>
+            Cobertura total en refacciones y mano de obra hasta 3 años. Tu
+            inversión protegida desde el primer día.
+          </p>
+        </div>
+        <div class="service-card">
+          <div class="service-icon" style="background: rgba(43, 78, 255, 0.12)">
+            <svg
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="#7C9FFF"
+              stroke-width="2"
+              stroke-linecap="round"
+            >
+              <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2" />
+              <circle cx="9" cy="7" r="4" />
+              <path d="M23 21v-2a4 4 0 0 0-3-3.87" />
+              <path d="M16 3.13a4 4 0 0 1 0 7.75" />
+            </svg>
+          </div>
+          <h3>Capacitación Operadores</h3>
+          <p>
+            Programas de formación certificados en normas NOM para operadores
+            nuevos y recertificación de operadores activos.
+          </p>
+        </div>
+        <div class="service-card">
+          <div
+            class="service-icon"
+            style="background: rgba(124, 92, 191, 0.15)"
+          >
+            <svg
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="#BBA3E8"
+              stroke-width="2"
+              stroke-linecap="round"
+            >
+              <circle cx="12" cy="12" r="10" />
+              <polyline points="12 6 12 12 16 14" />
+            </svg>
+          </div>
+          <h3>Soporte 24/7</h3>
+          <p>
+            Asistencia técnica telefónica y en sitio las 24 horas, los 365 días
+            del año. Tiempo de respuesta garantizado.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- PRODUCTOS -->
+    <section class="products" id="productos">
+      <div class="products-header">
+        <div>
+          <div class="eyebrow-blue">Catálogo de Equipos</div>
+          <h2 class="section-title-dark">
+            Equipos para<br /><em>cada operación.</em>
+          </h2>
+        </div>
+        <button class="btn-primary" style="align-self: flex-end">
+          Ver catálogo completo →
+        </button>
+      </div>
+      <div class="products-grid">
+        <div class="product-card">
+          <div class="product-img">
+            <span class="product-tag">⚡ Eléctrico</span>
+            <svg viewBox="0 0 200 150" xmlns="http://www.w3.org/2000/svg">
+              <rect
+                x="60"
+                y="50"
+                width="80"
+                height="65"
+                rx="8"
+                fill="#2B4EFF"
+                opacity="0.2"
+              />
+              <rect
+                x="98"
+                y="30"
+                width="42"
+                height="42"
+                rx="6"
+                fill="#2B4EFF"
+                opacity="0.15"
+              />
+              <rect
+                x="103"
+                y="35"
+                width="32"
+                height="26"
+                rx="4"
+                fill="#7C9FFF"
+                opacity="0.5"
+              />
+              <rect
+                x="48"
+                y="15"
+                width="7"
+                height="100"
+                rx="3"
+                fill="#2B4EFF"
+              />
+              <rect
+                x="59"
+                y="15"
+                width="7"
+                height="100"
+                rx="3"
+                fill="#1A35CC"
+              />
+              <rect
+                x="18"
+                y="108"
+                width="40"
+                height="5"
+                rx="2"
+                fill="#2B4EFF"
+              />
+              <rect
+                x="18"
+                y="117"
+                width="40"
+                height="5"
+                rx="2"
+                fill="#2B4EFF"
+              />
+              <rect
+                x="47"
+                y="100"
+                width="20"
+                height="25"
+                rx="3"
+                fill="#2B4EFF"
+                opacity="0.25"
+              />
+              <rect
+                x="138"
+                y="82"
+                width="16"
+                height="33"
+                rx="5"
+                fill="#0D0D2B"
+                opacity="0.2"
+              />
+              <circle cx="80" cy="120" r="13" fill="#0D0D2B" opacity="0.5" />
+              <circle cx="80" cy="120" r="7" fill="#2B4EFF" opacity="0.4" />
+              <circle cx="80" cy="120" r="3" fill="#2B4EFF" />
+              <circle cx="125" cy="120" r="13" fill="#0D0D2B" opacity="0.5" />
+              <circle cx="125" cy="120" r="7" fill="#2B4EFF" opacity="0.4" />
+              <circle cx="125" cy="120" r="3" fill="#2B4EFF" />
+              <ellipse
+                cx="100"
+                cy="142"
+                rx="65"
+                ry="7"
+                fill="rgba(43,78,255,0.08)"
+              />
+            </svg>
+          </div>
+          <div class="product-info">
+            <h3>LP-3000 Electric</h3>
+            <p>
+              Ideal para almacenes interiores. Cero emisiones, bajo nivel de
+              ruido, ideal para entornos sensibles.
+            </p>
+            <div class="product-specs">
+              <div class="p-spec">
+                <span>Capacidad</span><strong>3 Ton</strong>
+              </div>
+              <div class="p-spec">
+                <span>Elevación</span><strong>5.5 m</strong>
+              </div>
+              <div class="p-spec"><span>Batería</span><strong>8 h</strong></div>
+            </div>
+            <div class="product-footer">
+              <div class="product-price">
+                $485,000<br /><small>MXN / unidad</small>
+              </div>
+              <button class="btn-sm">Cotizar</button>
+            </div>
+          </div>
+        </div>
+
+        <div class="product-card">
+          <div class="product-img" style="background: #f3eeff">
+            <span class="product-tag" style="background: var(--purple)"
+              >🔥 Más vendido</span
+            >
+            <svg viewBox="0 0 200 150" xmlns="http://www.w3.org/2000/svg">
+              <rect
+                x="55"
+                y="45"
+                width="90"
+                height="70"
+                rx="8"
+                fill="#7C5CBF"
+                opacity="0.2"
+              />
+              <rect
+                x="100"
+                y="28"
+                width="45"
+                height="45"
+                rx="6"
+                fill="#7C5CBF"
+                opacity="0.15"
+              />
+              <rect
+                x="105"
+                y="33"
+                width="35"
+                height="28"
+                rx="4"
+                fill="#BBA3E8"
+                opacity="0.5"
+              />
+              <rect
+                x="43"
+                y="12"
+                width="8"
+                height="108"
+                rx="3"
+                fill="#7C5CBF"
+              />
+              <rect
+                x="55"
+                y="12"
+                width="8"
+                height="108"
+                rx="3"
+                fill="#5C3F9F"
+              />
+              <rect
+                x="14"
+                y="110"
+                width="42"
+                height="6"
+                rx="2"
+                fill="#7C5CBF"
+              />
+              <rect
+                x="14"
+                y="120"
+                width="42"
+                height="6"
+                rx="2"
+                fill="#7C5CBF"
+              />
+              <rect
+                x="42"
+                y="102"
+                width="22"
+                height="26"
+                rx="3"
+                fill="#7C5CBF"
+                opacity="0.25"
+              />
+              <rect
+                x="143"
+                y="85"
+                width="18"
+                height="38"
+                rx="6"
+                fill="#0D0D2B"
+                opacity="0.2"
+              />
+              <circle cx="78" cy="122" r="14" fill="#0D0D2B" opacity="0.5" />
+              <circle cx="78" cy="122" r="8" fill="#7C5CBF" opacity="0.4" />
+              <circle cx="78" cy="122" r="3" fill="#7C5CBF" />
+              <circle cx="128" cy="122" r="14" fill="#0D0D2B" opacity="0.5" />
+              <circle cx="128" cy="122" r="8" fill="#7C5CBF" opacity="0.4" />
+              <circle cx="128" cy="122" r="3" fill="#7C5CBF" />
+              <ellipse
+                cx="100"
+                cy="143"
+                rx="68"
+                ry="7"
+                fill="rgba(124,92,191,0.08)"
+              />
+            </svg>
+          </div>
+          <div class="product-info">
+            <h3>LP-5000 Combustión</h3>
+            <p>
+              El más potente de nuestra línea. Motor LPG de alto rendimiento,
+              perfecto para exteriores y cargas pesadas.
+            </p>
+            <div class="product-specs">
+              <div class="p-spec">
+                <span>Capacidad</span><strong>5 Ton</strong>
+              </div>
+              <div class="p-spec">
+                <span>Elevación</span><strong>6 m</strong>
+              </div>
+              <div class="p-spec"><span>Motor</span><strong>LPG</strong></div>
+            </div>
+            <div class="product-footer">
+              <div class="product-price">
+                $620,000<br /><small>MXN / unidad</small>
+              </div>
+              <button class="btn-sm">Cotizar</button>
+            </div>
+          </div>
+        </div>
+
+        <div class="product-card">
+          <div class="product-img" style="background: #fff0e6">
+            <span class="product-tag" style="background: var(--orange)"
+              >🏗 Reach Truck</span
+            >
+            <svg viewBox="0 0 200 150" xmlns="http://www.w3.org/2000/svg">
+              <rect
+                x="70"
+                y="55"
+                width="60"
+                height="70"
+                rx="8"
+                fill="#FF6B35"
+                opacity="0.2"
+              />
+              <rect
+                x="95"
+                y="30"
+                width="35"
+                height="45"
+                rx="6"
+                fill="#FF6B35"
+                opacity="0.15"
+              />
+              <rect
+                x="100"
+                y="35"
+                width="25"
+                height="28"
+                rx="4"
+                fill="#FFB394"
+                opacity="0.5"
+              />
+              <rect x="55" y="8" width="7" height="115" rx="3" fill="#FF6B35" />
+              <rect x="66" y="8" width="7" height="115" rx="3" fill="#CC4A1A" />
+              <rect
+                x="20"
+                y="100"
+                width="48"
+                height="5"
+                rx="2"
+                fill="#FF6B35"
+              />
+              <rect
+                x="20"
+                y="110"
+                width="48"
+                height="5"
+                rx="2"
+                fill="#FF6B35"
+              />
+              <rect
+                x="62"
+                y="122"
+                width="76"
+                height="8"
+                rx="4"
+                fill="#0D0D2B"
+                opacity="0.2"
+              />
+              <circle cx="75" cy="132" r="10" fill="#0D0D2B" opacity="0.5" />
+              <circle cx="75" cy="132" r="5" fill="#FF6B35" opacity="0.4" />
+              <circle cx="75" cy="132" r="2" fill="#FF6B35" />
+              <circle cx="125" cy="132" r="10" fill="#0D0D2B" opacity="0.5" />
+              <circle cx="125" cy="132" r="5" fill="#FF6B35" opacity="0.4" />
+              <circle cx="125" cy="132" r="2" fill="#FF6B35" />
+              <ellipse
+                cx="100"
+                cy="144"
+                rx="55"
+                ry="6"
+                fill="rgba(255,107,53,0.08)"
+              />
+            </svg>
+          </div>
+          <div class="product-info">
+            <h3>RT-7000 Reach Truck</h3>
+            <p>
+              Diseñado para pasillos estrechos y alturas extremas. Optimiza al
+              máximo el espacio vertical de tu almacén.
+            </p>
+            <div class="product-specs">
+              <div class="p-spec">
+                <span>Capacidad</span><strong>2.5 Ton</strong>
+              </div>
+              <div class="p-spec">
+                <span>Elevación</span><strong>12 m</strong>
+              </div>
+              <div class="p-spec">
+                <span>Pasillo</span><strong>2.7 m</strong>
+              </div>
+            </div>
+            <div class="product-footer">
+              <div class="product-price">
+                $780,000<br /><small>MXN / unidad</small>
+              </div>
+              <button class="btn-sm" style="background: var(--orange)">
+                Cotizar
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- BENEFICIOS -->
+    <section class="benefits" id="beneficios">
+      <div class="benefits-inner">
+        <div class="benefits-visual">
+          <div class="benefits-big-card">
+            <p class="big-card-label">Eficiencia operativa promedio</p>
+            <div class="big-card-val">88<span>%</span></div>
+            <p class="big-card-sub">Mayor rendimiento vs. competencia</p>
+            <div class="big-card-bar">
+              <div class="big-card-bar-fill"></div>
+            </div>
+          </div>
+          <div class="benefit-mini-cards">
+            <div class="bmc">
+              <div class="bmc-val">40<span>%</span></div>
+              <div class="bmc-label">Reducción de costos operativos</div>
+            </div>
+            <div class="bmc">
+              <div class="bmc-val">
+                18<span style="color: var(--purple)">K+</span>
+              </div>
+              <div class="bmc-label">Horas de soporte entregadas</div>
+            </div>
+          </div>
+        </div>
+        <div class="benefits-content">
+          <div class="eyebrow-purple">¿Por qué LiftPro?</div>
+          <h2 class="section-title-dark">
+            Qué tipo de<br /><em>beneficio</em><br />obtienes.
+          </h2>
+          <p
+            style="
+              color: var(--text-muted);
+              font-size: 14px;
+              line-height: 1.7;
+              margin-top: 16px;
+            "
+          >
+            Cada equipo que entregamos viene respaldado por décadas de
+            experiencia en logística industrial, asegurando que tu inversión
+            genere retornos desde el primer día de operación.
+          </p>
+          <div class="benefits-list">
+            <div class="benefit-item">
+              <div class="benefit-check">
+                <svg
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2.5"
+                >
+                  <polyline points="20 6 9 17 4 12" />
+                </svg>
+              </div>
+              <p>
+                <strong>Financiamiento flexible</strong>Planes de pago adaptados
+                a tu flujo de caja. Desde 12 hasta 60 meses con tasa
+                preferencial.
+              </p>
+            </div>
+            <div class="benefit-item">
+              <div class="benefit-check">
+                <svg
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2.5"
+                >
+                  <polyline points="20 6 9 17 4 12" />
+                </svg>
+              </div>
+              <p>
+                <strong>Entrega en 72 horas</strong>Stock disponible en nuestros
+                almacenes en CDMX, Monterrey y Guadalajara. Entrega rápida a
+                todo México.
+              </p>
+            </div>
+            <div class="benefit-item">
+              <div class="benefit-check">
+                <svg
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2.5"
+                >
+                  <polyline points="20 6 9 17 4 12" />
+                </svg>
+              </div>
+              <p>
+                <strong>Refacciones siempre disponibles</strong>Inventario de
+                más de 5,000 refacciones originales. Tiempos de reparación
+                mínimos garantizados.
+              </p>
+            </div>
+            <div class="benefit-item">
+              <div class="benefit-check">
+                <svg
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2.5"
+                >
+                  <polyline points="20 6 9 17 4 12" />
+                </svg>
+              </div>
+              <p>
+                <strong>Asesoría personalizada</strong>Un ingeniero dedicado
+                evalúa tu operación y recomienda el equipo ideal para tus
+                necesidades específicas.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CONTACTO -->
+    <section class="contact" id="contacto">
+      <div class="contact-inner">
+        <div class="contact-info">
+          <div class="section-eyebrow">Contáctanos</div>
+          <h2 class="section-title-lg">
+            ¿Listo para <em>optimizar</em> tu operación?
+          </h2>
+          <p>
+            Cuéntanos sobre tu operación y un especialista te contactará en
+            menos de 2 horas para asesorarte sin compromiso.
+          </p>
+          <div class="contact-points">
+            <div class="cp">
+              <div class="cp-icon">
+                <svg
+                  viewBox="0 0 24 24"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                >
+                  <path
+                    d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12 19.79 19.79 0 0 1 1.56 3.44 2 2 0 0 1 3.54 1.25h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 8.76a16 16 0 0 0 6 6l1.88-1.88a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"
+                  />
+                </svg>
+              </div>
+              <div class="cp-text">
+                <span>Teléfono</span><strong>+52 (55) 1234-5678</strong>
+              </div>
+            </div>
+            <div class="cp">
+              <div class="cp-icon">
+                <svg
+                  viewBox="0 0 24 24"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                >
+                  <path
+                    d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"
+                  />
+                  <polyline points="22,6 12,13 2,6" />
+                </svg>
+              </div>
+              <div class="cp-text">
+                <span>Email</span><strong>ventas@liftpro.mx</strong>
+              </div>
+            </div>
+            <div class="cp">
+              <div class="cp-icon">
+                <svg
+                  viewBox="0 0 24 24"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                >
+                  <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z" />
+                  <circle cx="12" cy="10" r="3" />
+                </svg>
+              </div>
+              <div class="cp-text">
+                <span>Oficinas</span
+                ><strong>CDMX · Monterrey · Guadalajara</strong>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="contact-form">
+          <h3>Solicita una Cotización</h3>
+          <div class="form-row">
+            <div class="form-group">
+              <label>Nombre</label
+              ><input type="text" placeholder="Juan Pérez" />
+            </div>
+            <div class="form-group">
+              <label>Empresa</label
+              ><input type="text" placeholder="Tu empresa S.A." />
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="form-group">
+              <label>Teléfono</label
+              ><input type="tel" placeholder="+52 55 0000-0000" />
+            </div>
+            <div class="form-group">
+              <label>Email</label
+              ><input type="email" placeholder="correo@empresa.com" />
+            </div>
+          </div>
+          <div class="form-group">
+            <label>Tipo de equipo</label>
+            <select>
+              <option value="">Selecciona un tipo...</option>
+              <option>Montacargas Eléctrico</option>
+              <option>Montacargas LPG / Diesel</option>
+              <option>Reach Truck</option>
+              <option>Transpaleta Eléctrica</option>
+              <option>Renta de equipo</option>
+              <option>Mantenimiento / Refacciones</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label>Mensaje</label>
+            <textarea
+              placeholder="Cuéntanos sobre tu operación: capacidad requerida, tipo de carga, condiciones del almacén..."
+            ></textarea>
+          </div>
+          <button
+            class="btn-form"
+            onclick="alert('¡Gracias! Un asesor te contactará pronto.')"
+          >
+            <svg
+              width="16"
+              height="16"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2.5"
+            >
+              <line x1="22" y1="2" x2="11" y2="13" />
+              <polygon points="22 2 15 22 11 13 2 9 22 2" />
+            </svg>
+            Enviar Solicitud
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer>
+      <div class="footer-brand">
+        <div
+          style="
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 0;
+          "
+        >
+          <div class="nav-logo-icon">
+            <svg
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="#fff"
+              stroke-width="2.5"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              width="22"
+              height="22"
+            >
+              <rect x="2" y="14" width="8" height="6" rx="1" />
+              <path d="M2 17h18" />
+              <path d="M10 17V8l8 3v6" />
+              <circle cx="6" cy="20" r="2" />
+              <circle cx="18" cy="20" r="2" />
+            </svg>
+          </div>
+          <span
+            style="
+              font-family: &quot;Barlow Condensed&quot;, sans-serif;
+              font-weight: 800;
+              font-size: 22px;
+              color: #fff;
+              letter-spacing: 0.02em;
+            "
+            >LIFTPRO</span
+          >
+        </div>
+        <p>
+          Más de 18 años siendo el aliado de operaciones logísticas en México.
+          Calidad, respaldo y servicio sin comparación.
+        </p>
+      </div>
+      <div class="footer-col">
+        <h4>Empresa</h4>
+        <ul>
+          <li><a href="#">Sobre Nosotros</a></li>
+          <li><a href="#">Nuestro Equipo</a></li>
+          <li><a href="#">Sucursales</a></li>
+          <li><a href="#">Trabaja con Nosotros</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Productos</h4>
+        <ul>
+          <li><a href="#">Montacargas Eléctrico</a></li>
+          <li><a href="#">Montacargas LPG</a></li>
+          <li><a href="#">Reach Trucks</a></li>
+          <li><a href="#">Transpaletas</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Soporte</h4>
+        <ul>
+          <li><a href="#">Centro de Ayuda</a></li>
+          <li><a href="#">Manuales Técnicos</a></li>
+          <li><a href="#">Solicitar Servicio</a></li>
+          <li><a href="#">Política de Garantía</a></li>
+        </ul>
+      </div>
+      <div class="footer-bottom" style="grid-column: 1/-1">
+        <p>
+          © 2025 LiftPro Industrial S.A. de C.V. — Todos los derechos
+          reservados.
+        </p>
+        <p style="color: rgba(255, 255, 255, 0.2)">Hecho en México 🇲🇽</p>
+      </div>
+    </footer>
+  </body>
+</html>
